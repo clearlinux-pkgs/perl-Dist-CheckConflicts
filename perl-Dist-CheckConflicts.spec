@@ -4,7 +4,7 @@
 #
 Name     : perl-Dist-CheckConflicts
 Version  : 0.11
-Release  : 3
+Release  : 4
 URL      : http://search.cpan.org/CPAN/authors/id/D/DO/DOY/Dist-CheckConflicts-0.11.tar.gz
 Source0  : http://search.cpan.org/CPAN/authors/id/D/DO/DOY/Dist-CheckConflicts-0.11.tar.gz
 Summary  : 'declare version conflicts for your dist'
