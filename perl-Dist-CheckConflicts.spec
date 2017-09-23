@@ -4,7 +4,7 @@
 #
 Name     : perl-Dist-CheckConflicts
 Version  : 0.11
-Release  : 7
+Release  : 8
 URL      : http://search.cpan.org/CPAN/authors/id/D/DO/DOY/Dist-CheckConflicts-0.11.tar.gz
 Source0  : http://search.cpan.org/CPAN/authors/id/D/DO/DOY/Dist-CheckConflicts-0.11.tar.gz
 Summary  : 'declare version conflicts for your dist'
@@ -65,7 +65,7 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.0/Dist/CheckConflicts.pm
+/usr/lib/perl5/site_perl/5.26.1/Dist/CheckConflicts.pm
 
 %files doc
 %defattr(-,root,root,-)
