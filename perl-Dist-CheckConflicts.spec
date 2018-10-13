@@ -4,14 +4,14 @@
 #
 Name     : perl-Dist-CheckConflicts
 Version  : 0.11
-Release  : 11
+Release  : 12
 URL      : https://cpan.metacpan.org/authors/id/D/DO/DOY/Dist-CheckConflicts-0.11.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DO/DOY/Dist-CheckConflicts-0.11.tar.gz
 Summary  : 'declare version conflicts for your dist'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
-Requires: perl-Dist-CheckConflicts-license
-Requires: perl-Dist-CheckConflicts-man
+Requires: perl-Dist-CheckConflicts-license = %{version}-%{release}
+BuildRequires : buildreq-cpan
 BuildRequires : perl(Module::Runtime)
 BuildRequires : perl(Test::Fatal)
 BuildRequires : perl(Try::Tiny)
@@ -21,20 +21,21 @@ This archive contains the distribution Dist-CheckConflicts,
 version 0.11:
 declare version conflicts for your dist
 
+%package dev
+Summary: dev components for the perl-Dist-CheckConflicts package.
+Group: Development
+Provides: perl-Dist-CheckConflicts-devel = %{version}-%{release}
+
+%description dev
+dev components for the perl-Dist-CheckConflicts package.
+
+
 %package license
 Summary: license components for the perl-Dist-CheckConflicts package.
 Group: Default
 
 %description license
 license components for the perl-Dist-CheckConflicts package.
-
-
-%package man
-Summary: man components for the perl-Dist-CheckConflicts package.
-Group: Default
-
-%description man
-man components for the perl-Dist-CheckConflicts package.
 
 
 %prep
@@ -62,12 +63,12 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/perl-Dist-CheckConflicts
-cp LICENSE %{buildroot}/usr/share/doc/perl-Dist-CheckConflicts/LICENSE
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-Dist-CheckConflicts
+cp LICENSE %{buildroot}/usr/share/package-licenses/perl-Dist-CheckConflicts/LICENSE
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -76,12 +77,12 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/Dist/CheckConflicts.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Dist/CheckConflicts.pm
 
-%files license
-%defattr(-,root,root,-)
-/usr/share/doc/perl-Dist-CheckConflicts/LICENSE
-
-%files man
+%files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/Dist::CheckConflicts.3
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-Dist-CheckConflicts/LICENSE
